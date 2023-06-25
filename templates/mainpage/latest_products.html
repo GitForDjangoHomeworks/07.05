@@ -1,0 +1,45 @@
+{% load static %}
+
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="latest-product">
+                    <h2 class="section-title">Latest Products</h2>
+                    <div class="product-carousel">
+                        
+                        {% for product in latest_products %}
+            
+                        
+                            
+                        <div class="single-product">
+                            <div class="product-f-image">
+                                
+                                {% if product.images %}
+                                    
+                                    <img src="{{ product.images.all.0.image.url }}" alt="">
+                                {% elif product.category.image %}
+                                    <img src="{{ product.category.image.url }}" alt="">
+                                 {% endif %}                             
+
+                                <div class="product-hover">
+                                    <a href="{% url 'products:show_single_product_page' product.pk %}"  class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                    <a href="{% url 'products:show_single_product_page' product.pk %}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                </div>
+                            </div>
+                            
+                            <h2><a href="{% url 'products:show_single_product_page' product.pk %}">{{ product.name }}</a></h2>
+                            
+                            <div class="product-carousel-price">
+                                <ins>${{ product.end_price }}</ins> <del>${{ product.initial_price }}</del>
+                            </div> 
+                        </div>
+                           
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

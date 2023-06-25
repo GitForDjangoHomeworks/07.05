@@ -1,0 +1,39 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+{% load bbcode_tags %}
+{% bbcode entry.bbcode_content %}
+<div class="product-widget-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">{{ category.name }}</h2>
+                    
+                    {% for product in category.products.all  %}
+                        
+                    
+                        
+                    <div class="single-wid-product">
+                        
+                        
+                            
+                        
+                        {% if product.images %} 
+                      <img src="{{ product.images.all.0.image.url }}" alt="" class="product-thumb">
+                        {% endif %}
+                        <h2><a href="{% url 'products:show_single_product_page' product.pk %}">{{ product.name }}</a></h2>
+                        <div class="product-wid-price">
+                            <ins>${{ product.end_price }}</ins> <del>${{ product.initial_price }}</del>
+                        </div>                            
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <p>{{ from_view|safe }}</p>
+    </div>
+</div> 
+{% endblock content %}
+    

@@ -1,0 +1,75 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock title %}
+    
+{% block content %}
+{% load static %}
+<section class="container">
+    <h1>Корзина</h1>
+    {% if user.is_authenticated %}
+    <table class="cart table table-fluid">
+        <thead>
+        <tr>
+            <th>Изображение</th>
+            <th>Товар</th>
+            <th>Количество</th>
+            <th>Удалить</th>
+            <th>Стоимость за единицу</th>
+            <th>Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+                                {% if product.images.all.0.image %}
+                                    {{ product.images.all.0.image.url }}
+                                {% else %}
+                                    {% static "images/logo/logo_x_72.png" %}
+                                {% endif %}" height="150">
+                        </a>
+                    </td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td><a href="{% url "cart:cart_remove" product.id%}">Удалить</a></td>
+                    <td class="num">{{ item.price }}</td>
+                    <td class="num">{{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Итого</td>
+            <td colspan="4"></td>
+            <td class="num">{{ cart.get_total_price }}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><a href="{% url 'cart:cart_clear' %} ">Clear whole cart</a></td>
+                <td><a class="btn btn-primary" href="{% url 'orders:order_create'%}">Сделать заказ</a></td>
+            </tr>
+        </tfoot>
+    </table>
+    <p class="text-right">
+        <!-- <div class="btn-button-group mg-top-30 mg-bottom-15 bt-contact"> -->
+            
+            {% comment %}
+                <a class="zoa-btn btn-login hover-white contact" href="{% url 'orders:order_create' %}" class="button">Купить</a>
+            {% endcomment %}
+                
+        <!-- </div> -->
+
+
+    </p>
+    {% else %}
+        <p>Вы не авторизованы</p>
+        <a href="{% url 'login' %}" class="button">Войти</a>
+
+    {% endif %}
+</section>
+{% endblock content %}

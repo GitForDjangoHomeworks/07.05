@@ -1,0 +1,33 @@
+
+{% load static %}
+<div class="product-widget-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            
+            {% for category in categories %}
+            
+            {% with first_product=category.products.all.0 %}
+            
+            <div class="col-md-2">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title"><a href="{% url 'products:category_view' category.pk %}">{{ category.name }}</a></h2>
+               
+                    <div class="single-wid-product">
+                        
+                        
+                       
+                        <img src="{{ category.image.url }}" alt="" class="product-thumb">
+
+                       
+                   
+                       
+                                                 
+                    </div>
+                </div>
+            </div>
+            {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+</div> <!-- End product widget area -->

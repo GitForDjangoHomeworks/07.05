@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+
+
+{% block content %}
+    <section>
+        <div>
+            
+            {% if no_files %}
+                <h2>{{ no_files }}</h2>
+                <a href="{% url 'pages:add_file' %}">Добавить файл</a>
+            {% else %}
+            
+            {% for file  in files %}
+                Файл:
+                <a href="{% url 'pages:get_file' filename=file %}">{{ file }}</a>
+                <a href="{% url 'pages:delete_file' filename=file %}" class="btn btn-primary">Delete File</a>
+                <br>
+            {% endfor %}
+                
+            {% endif %}
+                
+        </div>
+
+    </section>
+{% endblock content %}
+    

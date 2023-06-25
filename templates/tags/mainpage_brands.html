@@ -1,0 +1,26 @@
+{% load custom_tags %}
+{% load thumbnail %}
+
+<div class="brand-list">
+    
+    {% for brand in  brand_items %}
+       
+        {% if brand.image_thumbnail %}
+            <img src="{{ brand.image_thumbnail.url }}" alt="{{ brand.title }}">
+        {%else%}
+        
+            {% if forloop.counter is 2 %}
+            
+                <img src="{{ brand.image|thumbnail_url:'avatar_100_100_bw' }}" alt="{{ brand.title }}">
+
+            {% else %}
+                {% thumbnail brand.image avatar_100_100  %}
+                <img src="{{ brand.image|thumbnail_url:'avatar_100_100' }}" alt="{{ brand.title }}">
+                
+            {% endif %}
+            
+        {% endif %}
+            
+    {% endfor %}
+                           
+</div>

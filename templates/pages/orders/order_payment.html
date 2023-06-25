@@ -1,0 +1,16 @@
+{% extends 'layout/base.html' %}
+
+
+{% block title %}
+    Оплата
+{% endblock title %}
+    
+{% block content %}
+<h1>QR код для оплаты</h1>
+        
+    {{ order }}
+    {{ order_items }}
+    
+    
+    <img src="/media/qrs/order_{{order.pk}}_qr.png" alt="">
+{% endblock content %}

@@ -1,0 +1,7 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    <h1>Вы успешно отправили сообщение!</h1>
+    <a class="btn btn-primary" href="{% url 'contacts:contact_page_form_view' %}">Вернуться на страницу формы</a>
+{% endblock content %}
+    

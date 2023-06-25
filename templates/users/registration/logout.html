@@ -1,0 +1,15 @@
+{% extends 'layout/base.html' %}
+
+
+{% block title %}
+    Авторизация
+{% endblock title %}
+
+
+{% block content %}
+    <h2>Выход</h2>
+    <p>Желаете сново войти?</p>
+    <a class="btn btn-success" href="{% url 'login' %}"></a>
+{% endblock content %}
+    
+    

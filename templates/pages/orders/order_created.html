@@ -1,0 +1,16 @@
+{% extends 'layout/base.html' %}
+
+
+{% block title %}
+    {{ category.name }}
+{% endblock title %}
+    
+{% block content %}
+<h1>Спасибо</h1>
+<p class="dark">Ваш заказ был успешно оформлен. Мы свяжемся с вами в ближайшее время.</p>
+<p class="dark">Номер Вашего заказа </p>
+    <strong  class="dark">{{ order.id }}</strong>.  
+    <img src="/media/qrs/order_{{order.pk}}_qr.png" alt="">
+<a class="btn btn-primary" href="{% url 'orders:order_detail' qr %}">Перейти к деталям заказа</a>
+
+{% endblock %}

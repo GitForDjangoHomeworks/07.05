@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="user-menu">
+                    <ul>
+                        {% if user.is_authenticated %}
+                        <li><a href="#"><i class="fa fa-user"></i>{{ user.username }}</a></li>
+                        {% endif %}
+                        <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+                        <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
+                        <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
+                        
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}"><i class="fa fa-user"></i>Logut</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}"><i class="fa fa-user"></i>Login</a></li>
+                        {% endif %}
+                            
+                        
+                    </ul>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

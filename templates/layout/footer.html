@@ -1,0 +1,23 @@
+{% load static %}
+{% load custom_tags %}
+<div class="footer-top-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+           <div class="col-lg-3 col-md-6">
+
+            {% footer_contact %}
+            
+                <div class="footer-social">
+                    {% footer_social %}
+                </div>  
+            </div>
+            
+      
+            {% footer_part_menu 'User Navigation' 'My account' 'Order History' 'Wishlist' 'Vendor contact' 'Front page' %}
+          
+            {% footer_part_menu 'Categories' 'Mobile phone' 'Home accesseries' 'LED TV' 'Computer' 'Gadets' %}
+           
+        </div>
+    </div>
+</div>
